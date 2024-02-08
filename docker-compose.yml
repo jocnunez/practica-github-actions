@@ -3,7 +3,7 @@ version: '3.8'
 services:
   database:
     container_name: database
-    image: mongo:7.0.5
+    build: ./database
     environment:
       - MONGO_ROOT_USERNAME
       - MONGO_ROOT_PASSWORD
