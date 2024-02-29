@@ -2,15 +2,18 @@ version: '3.8'
 
 services:
   database:
+    image: mongo:7.0.5
     container_name: database
-    build: ./database
     environment:
-      - MONGO_ROOT_USERNAME
-      - MONGO_ROOT_PASSWORD
-      - MONGO_DATABASE
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+      - MONGO_API_USER
+      - MONGO_API_PWD
     ports:
       - 27017:27017
     volumes:
+      - ./db/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
       - database:/data/db
     networks:
       - services
